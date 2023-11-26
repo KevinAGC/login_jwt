@@ -1,95 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:login_jwt/pages/pages.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'services/services.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+void main() => runApp(AppState());
 
+class AppState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: const MyHomePage(title: 'Registro'),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthService()),
+      ],
+      child: MyApp(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: Text(
-            widget.title,
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        body: Center(
-            child: ListView(
-          //shrinkWrap: true,
-
-          padding: EdgeInsets.symmetric(vertical: 100),
-          children: [
-            Column(
-              children: [
-                Image.asset(
-                  "assets/images/user.png",
-                  color: Colors.purple.shade100,
-                  height: 100,
-                ),
-                Title(
-                  color: Colors.green,
-                  child: Text("Bienvenido",
-                      style: TextStyle(color: Colors.black54, fontSize: 50)),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText: 'Email',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText: 'Password',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(50.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                      shape: LinearBorder(),
-                    ),
-                    onPressed: () {},
-                    child: const Text('Registro'),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        )));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'IQ-Switch App',
+      initialRoute: 'checking',
+      routes: {
+        'login': (_) => LoginScreen(),
+        'register': (_) => RegisterScreen(),
+        'home': (_) => HomeScreen(),
+        'checking': (_) => CheckAuthScreen()
+      },
+      scaffoldMessengerKey: NotificationsService.messengerKey,
+      /*theme: ThemeData.dark().copyWith(
+            scaffoldBackgroundColor: Colors.grey[800],
+            appBarTheme:
+                const AppBarTheme(elevation: 0, color: Colors.redAccent),
+            floatingActionButtonTheme: const FloatingActionButtonThemeData(
+                backgroundColor: Colors.redAccent, elevation: 0))*/
+      theme: ThemeData.light().copyWith(
+          scaffoldBackgroundColor: Colors.black54,
+          appBarTheme: const AppBarTheme(elevation: 0, color: Colors.redAccent),
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+              backgroundColor: Colors.redAccent, elevation: 0)),
+    );
   }
 }

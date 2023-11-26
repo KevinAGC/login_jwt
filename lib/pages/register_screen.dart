@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,19 +12,19 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(title: 'Login'),
+      home: const RegisterScreenPage(title: 'Registro'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class RegisterScreenPage extends StatefulWidget {
+  const RegisterScreenPage({super.key, required this.title});
   final String title;
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<RegisterScreenPage> createState() => _RegisterScreenPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _RegisterScreenPageState extends State<RegisterScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Image.asset(
                   "assets/images/user.png",
+                  color: Colors.purple.shade100,
                   height: 100,
                 ),
                 Title(
@@ -83,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: LinearBorder(),
                     ),
                     onPressed: () {},
-                    child: const Text('Iniciar Sesión'),
+                    child: const Text('Registro'),
                   ),
                 ),
               ],
