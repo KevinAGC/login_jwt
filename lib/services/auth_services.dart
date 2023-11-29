@@ -31,6 +31,7 @@ class AuthService extends ChangeNotifier {
       // decodedResp['idToken'];
       return null;
     } else {
+      //ojo
       return decodedResp['error']['message'];
     }
   }
@@ -40,7 +41,7 @@ class AuthService extends ChangeNotifier {
       'email': email,
       'password': password
     };
-    final url = Uri.https(_baseUrl, '/api/Cuentas/login');
+    final url = Uri.http(_baseUrl, '/api/Cuentas/login');
 
     //final url2 = Uri.https(_baseUrl, '/Prueba/on');
 

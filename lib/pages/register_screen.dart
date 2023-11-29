@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_jwt/pages/login_screen.dart';
 import 'package:provider/provider.dart';
 import '../providers/login_form_provider.dart';
 import '../services/services.dart';
@@ -14,7 +15,7 @@ class RegisterScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.blue,
           title: const Text(
-            "Register",
+            "Registro",
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -131,6 +132,16 @@ class _LoginForm extends StatelessWidget {
                           style: TextStyle(color: Colors.white),
                         ))),
               ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => LoginScreen(),
+                          transitionDuration: Duration(seconds: 0)));
+                },
+                child: Text('Ingresar'),
+              )
             ],
           ),
         ],
